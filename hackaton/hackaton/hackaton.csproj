@@ -191,13 +191,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\bootstrap-theme.css" />
-    <Content Include="Content\css\bootstrap-theme.min.css" />
-    <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\js\bootstrap.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\npm.js" />
+    <None Include="Content\scss\site.scss" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\vendor\bootstrap-theme.css" />
+    <Content Include="Content\css\vendor\bootstrap-theme.min.css" />
+    <Content Include="Content\css\vendor\bootstrap.css" />
+    <Content Include="Content\css\vendor\bootstrap.min.css" />
+    <Content Include="Content\js\vendor\bootstrap.js" />
+    <Content Include="Content\js\vendor\bootstrap.min.js" />
+    <Content Include="Content\js\vendor\jquery-3.1.0.min.js" />
+    <Content Include="Content\js\vendor\npm.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -254,10 +257,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\css\bootstrap-theme.css.map" />
-    <Content Include="Content\css\bootstrap-theme.min.css.map" />
-    <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\css\vendor\bootstrap-theme.css.map" />
+    <Content Include="Content\css\vendor\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\vendor\bootstrap.css.map" />
+    <Content Include="Content\css\vendor\bootstrap.min.css.map" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -285,7 +288,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />

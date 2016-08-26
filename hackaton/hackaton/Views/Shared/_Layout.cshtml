@@ -6,27 +6,12 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
+        <link rel="stylesheet" type="text/css" href="/Content/css/vendor/bootstrap.min.css">
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+           <a href="#" data-toggle="modal"  data-target="#myModal">testing bootstrap modal</a>
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
@@ -35,14 +20,22 @@
             </section>
         </div>
         <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
+            
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
+
+        <div id ="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">testing my modal</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/Content/js/vendor/jquery-3.1.0.min.js" type="text/javascript"></script>
+        <script src="/Content/js/vendor/bootstrap.min.js" type="text/javascript"></script>
         @RenderSection("scripts", required: false)
     </body>
 </html>
