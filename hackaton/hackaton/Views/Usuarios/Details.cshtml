@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Usuario</legend>
+@*    <legend>Usuario</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -70,9 +70,48 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.HoraRegreso)
+    </div>*@
+
+
+    <div class="container" id="detalles-usuario">
+        <div class="row">
+            <div class="panel-heading">
+	            <div class="panel-title text-center">
+	                <h1 class="title">Ver Detalles de Usuario</h1>
+	                <hr />
+	            </div>
+	        </div> 
+            <div class="col-xs-12 col-sm-6 col-md-6 details-container">
+                <div class="well well-sm">
+                    
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <h4>
+                                @Model.Nombre @Model.Apellidos</h4>
+                            <small>
+                                @Model.Username
+                                @*
+                                <cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                            </i></cite>*@</small>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i> @Model.Email
+                                <br />
+                                <i class="glyphicon glyphicon-phone"></i ><a href="tel:@Model.Telefono">@Model.Telefono</a>
+                                <br />
+                                <i class="glyphicon glyphicon-calendar"></i> Hora de Salida: @Model.HoraSalida
+                                <br />
+                                <i class="glyphicon glyphicon-calendar"></i> Hora de Regreso: @Model.HoraRegreso
+
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

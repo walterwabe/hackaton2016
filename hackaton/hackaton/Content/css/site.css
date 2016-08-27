@@ -1,4 +1,22 @@
 #crear-usuario {
-  padding: 50px 30px; }
+  padding: 30px 30px; }
+
+#detalles-usuario {
+  padding: 10px 30px; }
+  #detalles-usuario .details-container {
+    width: 100%; }
+
+#paradas-rutas {
+  padding: 30px 30px; }
+
+@media (min-width: 768px) {
+  #paradas-rutas {
+    padding: 100px 30px; }
+
+  #crear-usuario {
+    padding: 100px 30px; }
+
+  #detalles-usuario {
+    padding: 50px 30px; } }
 
 /*# sourceMappingURL=site.css.map */

@@ -96,7 +96,7 @@
 				        </div>
 
 				        <div class="form-group">
-					        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+					        <label for="email" class="cols-sm-2 control-label">Email</label>
 					        <div class="cols-sm-10">
 						        <div class="input-group">
 							        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -106,8 +106,19 @@
 					        </div>
 				        </div>
 
+                        <div class="form-group">
+					        <label for="telefono" class="cols-sm-2 control-label">Telefono</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-phone-square fa" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.Telefono , new { @class = "form-control", @placeholder = "Escriba su Telefono" })
+                                    @Html.ValidationMessageFor(model => model.Telefono)
+						        </div>
+					        </div>
+				        </div>
+
 				        <div class="form-group">
-					        <label for="username" class="cols-sm-2 control-label">Username</label>
+					        <label for="username" class="cols-sm-2 control-label">Usuario</label>
 					        <div class="cols-sm-10">
 						        <div class="input-group">
 							        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
@@ -132,7 +143,7 @@
 					        <label for="hora-salida" class="cols-sm-2 control-label">Hora Salida</label>
 					        <div class="cols-sm-10">
 						        <div class="input-group">
-							        <span class="input-group-addon"><i class="fa fa-clock fa-lg" aria-hidden="true"></i></span>
+							        <span class="input-group-addon"><i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i></span>
 							        @Html.TextBoxFor(model => model.HoraSalida , new { @class = "form-control", @placeholder = "Escriba su Hora de Salida" })
                                     @Html.ValidationMessageFor(model => model.HoraSalida)
                                 </div>
@@ -141,10 +152,10 @@
 
 
                         <div class="form-group">
-					        <label for="hora-regreso" class="cols-sm-2 control-label">Password</label>
+					        <label for="hora-regreso" class="cols-sm-2 control-label">Hora Regreso</label>
 					        <div class="cols-sm-10">
 						        <div class="input-group">
-							        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							        <span class="input-group-addon"><i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i></span>
 							        @Html.TextBoxFor(model => model.HoraRegreso , new { @class = "form-control", @placeholder = "Escriba su Hora de Regreso" })
                                     @Html.ValidationMessageFor(model => model.HoraRegreso)
                                 </div>
