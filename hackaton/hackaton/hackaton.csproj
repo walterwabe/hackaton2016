@@ -241,6 +241,7 @@
     <Content Include="Content\img\portfolio\submarine.png" />
     <Content Include="Content\img\profile.png" />
     <Content Include="Content\js\Maps.js" />
+    <Content Include="Content\js\Rutas.js" />
     <Content Include="Content\js\vendor\bootstrap.js" />
     <Content Include="Content\js\vendor\bootstrap.min.js" />
     <Content Include="Content\js\vendor\contact_me.js" />
