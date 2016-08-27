@@ -62,6 +62,7 @@ function obtenerDireccionCoordenadas(location, infowindow) {
 function obtenerCoordenadasDesdeDireccion(direccion) {
     geocoder.geocode({ 'address': direccion }, function (results, status) {
         if (status == 'OK') {
+            borrarMarcador();
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
@@ -69,6 +70,7 @@ function obtenerCoordenadasDesdeDireccion(direccion) {
                 draggable: true,
                 animation: google.maps.Animation.DROP
             });
+            currentMarker = marker;
         } else {
             alert('Fallo en geolocalizacion: ' + status);
         }
