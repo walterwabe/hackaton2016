@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using hackaton.Models;
+using System.Data.Spatial;
 
 namespace hackaton.Controllers
 {
@@ -69,9 +70,10 @@ namespace hackaton.Controllers
 
             if (ModelState.IsValid)
             {
-                
-                //ruta.Destino = destino;
-                //ruta.Origen = origen;
+                string[] geoOrigen = origen.Split(',');
+                string[] geoDestino = destino.Split(',');
+                ruta.Destino = DbGeography.PointFromText("POINT(" + geoDestino[1] + " " + geoDestino[0] + ")", 4326);
+                ruta.Origen = DbGeography.PointFromText("POINT(" + geoOrigen[1] + " " + geoOrigen[0] + ")", 4326);
                 ruta.Destino_Nombre = destinoNombre;
                 ruta.Origen_Nombre = origenNombre;
                 ruta.FrecuenciaMin = Int16.Parse(Frecuencia);
@@ -82,6 +84,30 @@ namespace hackaton.Controllers
 
             return Json(ruta.Id, JsonRequestBehavior.AllowGet); ;
         }
+
+
+        [HttpPost]
+        public ActionResult CreateParada(String descripcion, String ubicacion, String idRuta)
+        {
+
+            Ruta ruta = db.Rutas.Find(Int16.Parse(idRuta));
+            Parada parada =  new Parada();
+
+            if (ModelState.IsValid)
+            {
+                
+                string[] geoUbicacion = ubicacion.Split(',');
+                parada.Ubicacion = DbGeography.PointFromText("POINT(" + geoUbicacion[1] + " " + geoUbicacion[0] + ")", 4326);
+                parada.Descripcion = descripcion;
+                parada.Id_Ruta = Int16.Parse(idRuta);
+                ruta.Paradas.Add(parada);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+
+            return Json(parada.Id, JsonRequestBehavior.AllowGet); ;
+        }
+
 
         //
         // GET: /Rutas/Edit/5
