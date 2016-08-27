@@ -4,96 +4,164 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Usuario</legend>
+        
+        
+        <div class="container" id="crear-usuario">
+	        <div class="row main">
+		        <div class="panel-heading">
+	                <div class="panel-title text-center">
+	                    <h1 class="title">Registrar Usuario</h1>
+	                    <hr />
+	                </div>
+	            </div> 
+		        <div class="main-login main-center">
+			        <form class="form-horizontal" method="post" action="#">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nombre)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nombre)
-            @Html.ValidationMessageFor(model => model.Nombre)
-        </div>
+                     @*   <legend>Usuario</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Apellidos)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Apellidos)
-            @Html.ValidationMessageFor(model => model.Apellidos)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Username)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Username)
-            @Html.ValidationMessageFor(model => model.Username)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Username)
+                </div>
+                <div class="editor-field">
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Password)
+                </div>
+                <div class="editor-field">
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Telefono)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Telefono)
-            @Html.ValidationMessageFor(model => model.Telefono)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Telefono)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Telefono)
+                    @Html.ValidationMessageFor(model => model.Telefono)
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Foto)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Foto)
-            @Html.ValidationMessageFor(model => model.Foto)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Foto)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Foto)
+                    @Html.ValidationMessageFor(model => model.Foto)
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.HoraSalida)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.HoraSalida)
-            @Html.ValidationMessageFor(model => model.HoraSalida)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HoraSalida)
+                </div>
+                <div class="editor-field">
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.HoraRegreso)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.HoraRegreso)
-            @Html.ValidationMessageFor(model => model.HoraRegreso)
-        </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HoraRegreso)
+                </div>
+                <div class="editor-field">
+                </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+                <p>
+                    <input type="submit" value="Create" />
+                </p>*@
+
+
+						
+				        <div class="form-group">
+					        <label for="name" class="cols-sm-2 control-label">Nombre</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Escriba su Nombre" })
+                                    @Html.ValidationMessageFor(model => model.Nombre)
+						        </div>
+					        </div>
+				        </div>
+
+
+                        <div class="form-group">
+					        <label for="name" class="cols-sm-2 control-label">Apellido</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    @Html.TextBoxFor(model => model.Apellidos , new { @class = "form-control", @placeholder = "Escriba su Apellido" })
+                                    @Html.ValidationMessageFor(model => model.Apellidos)
+						        </div>
+					        </div>
+				        </div>
+
+				        <div class="form-group">
+					        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.Email , new { @class = "form-control", @placeholder = "Escriba su Email" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+						        </div>
+					        </div>
+				        </div>
+
+				        <div class="form-group">
+					        <label for="username" class="cols-sm-2 control-label">Username</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.Username , new { @class = "form-control", @placeholder = "Escriba su Usuario" })
+                                    @Html.ValidationMessageFor(model => model.Username)
+                                </div>
+					        </div>
+				        </div>
+
+				        <div class="form-group">
+					        <label for="password" class="cols-sm-2 control-label">Password</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.Password , new { @class = "form-control", @placeholder = "Escriba su Password", @type="password" })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                </div>
+					        </div>
+				        </div>
+
+                        <div class="form-group">
+					        <label for="hora-salida" class="cols-sm-2 control-label">Hora Salida</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-clock fa-lg" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.HoraSalida , new { @class = "form-control", @placeholder = "Escriba su Hora de Salida" })
+                                    @Html.ValidationMessageFor(model => model.HoraSalida)
+                                </div>
+					        </div>
+				        </div>
+
+
+                        <div class="form-group">
+					        <label for="hora-regreso" class="cols-sm-2 control-label">Password</label>
+					        <div class="cols-sm-10">
+						        <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							        @Html.TextBoxFor(model => model.HoraRegreso , new { @class = "form-control", @placeholder = "Escriba su Hora de Regreso" })
+                                    @Html.ValidationMessageFor(model => model.HoraRegreso)
+                                </div>
+					        </div>
+				        </div>
+
+				        <div class="form-group ">
+					        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value ="Registrar Usuario">
+				        </div>
+			        </form>
+		        </div>
+	        </div>
+        </div>
     </fieldset>
+    
+    
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
