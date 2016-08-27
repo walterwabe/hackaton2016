@@ -1,0 +1,43 @@
+﻿@model hackaton.Models.Ruta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Ruta</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Origen_Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Origen_Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Destino_Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Destino_Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FrecuenciaMin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FrecuenciaMin)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
