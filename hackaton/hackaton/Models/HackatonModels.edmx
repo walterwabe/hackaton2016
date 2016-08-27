@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HackatonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HackatonModelStoreContainer">
+          <EntitySet Name="Paradas" EntityType="HackatonModel.Store.Paradas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rutas" EntityType="HackatonModel.Store.Rutas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuarios" EntityType="HackatonModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Paradas__Id_Ruta__29572725" Association="HackatonModel.Store.FK__Paradas__Id_Ruta__29572725">
+            <End Role="Rutas" EntitySet="Rutas" />
+            <End Role="Paradas" EntitySet="Paradas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Paradas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Ubicacion" Type="geography" />
+          <Property Name="Id_Ruta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rutas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Origen_Nombre" Type="nvarchar(max)" />
+          <Property Name="Origen" Type="geography" />
+          <Property Name="Destino_Nombre" Type="nvarchar(max)" />
+          <Property Name="Destino" Type="geography" />
+          <Property Name="FrecuenciaMin" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Apellidos" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Telefono" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Origen" Type="geography" />
+          <Property Name="Destino" Type="geography" />
+          <Property Name="Foto" Type="nvarchar(max)" />
+          <Property Name="HoraSalida" Type="time" />
+          <Property Name="HoraRegreso" Type="time" />
+        </EntityType>
+        <Association Name="FK__Paradas__Id_Ruta__29572725">
+          <End Role="Rutas" Type="HackatonModel.Store.Rutas" Multiplicity="1" />
+          <End Role="Paradas" Type="HackatonModel.Store.Paradas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paradas">
+              <PropertyRef Name="Id_Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HackatonModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HackatonEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Paradas" EntityType="HackatonModel.Parada" />
+          <EntitySet Name="Rutas" EntityType="HackatonModel.Ruta" />
+          <EntitySet Name="Usuarios" EntityType="HackatonModel.Usuario" />
+          <AssociationSet Name="FK__Paradas__Id_Ruta__29572725" Association="HackatonModel.FK__Paradas__Id_Ruta__29572725">
+            <End Role="Rutas" EntitySet="Rutas" />
+            <End Role="Paradas" EntitySet="Paradas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Parada">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ubicacion" Type="Geography" />
+          <Property Name="Id_Ruta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ruta" Relationship="HackatonModel.FK__Paradas__Id_Ruta__29572725" FromRole="Paradas" ToRole="Rutas" />
+        </EntityType>
+        <EntityType Name="Ruta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Origen_Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Origen" Type="Geography" />
+          <Property Name="Destino_Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Destino" Type="Geography" />
+          <Property Name="FrecuenciaMin" Type="Int32" />
+          <NavigationProperty Name="Paradas" Relationship="HackatonModel.FK__Paradas__Id_Ruta__29572725" FromRole="Rutas" ToRole="Paradas" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Origen" Type="Geography" />
+          <Property Name="Destino" Type="Geography" />
+          <Property Name="Foto" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HoraSalida" Type="Time" Precision="7" />
+          <Property Name="HoraRegreso" Type="Time" Precision="7" />
+        </EntityType>
+        <Association Name="FK__Paradas__Id_Ruta__29572725">
+          <End Role="Rutas" Type="HackatonModel.Ruta" Multiplicity="1" />
+          <End Role="Paradas" Type="HackatonModel.Parada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paradas">
+              <PropertyRef Name="Id_Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HackatonModelStoreContainer" CdmEntityContainer="HackatonEntities">
+          <EntitySetMapping Name="Paradas">
+            <EntityTypeMapping TypeName="HackatonModel.Parada">
+              <MappingFragment StoreEntitySet="Paradas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Id_Ruta" ColumnName="Id_Ruta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rutas">
+            <EntityTypeMapping TypeName="HackatonModel.Ruta">
+              <MappingFragment StoreEntitySet="Rutas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Origen_Nombre" ColumnName="Origen_Nombre" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino_Nombre" ColumnName="Destino_Nombre" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="FrecuenciaMin" ColumnName="FrecuenciaMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="HackatonModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraRegreso" ColumnName="HoraRegreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
