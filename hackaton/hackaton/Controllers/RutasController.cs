@@ -59,6 +59,30 @@ namespace hackaton.Controllers
             return View(ruta);
         }
 
+
+        [HttpPost]
+        public ActionResult CreateRuta(String nombre, String origenNombre, String destinoNombre, String origen, String destino, String Frecuencia)
+        {
+
+            Ruta ruta = new Ruta();
+            ruta.Nombre = nombre;
+
+            if (ModelState.IsValid)
+            {
+                
+                //ruta.Destino = destino;
+                //ruta.Origen = origen;
+                ruta.Destino_Nombre = destinoNombre;
+                ruta.Origen_Nombre = origenNombre;
+                ruta.FrecuenciaMin = Int16.Parse(Frecuencia);
+                db.Rutas.Add(ruta);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+
+            return Json(ruta.Id, JsonRequestBehavior.AllowGet); ;
+        }
+
         //
         // GET: /Rutas/Edit/5
 
