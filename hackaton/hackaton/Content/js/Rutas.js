@@ -5,6 +5,11 @@ $(document).ready(function () {
         agregarRuta();
     });
 
+
+    $('#agregar-parada').click(function () {
+        agregarParada();
+    });
+
 });
 
 
@@ -13,7 +18,12 @@ $(document).ready(function () {
 $(document).ready(function () {
 
     $('.abrir-mapa').click(function () {
-        initMap('map');
+
+        window.setTimeout(function () {
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(new google.maps.LatLng(9.934739, -84.087502));
+        }, 1000);
+        $('.cerrar-mapa').attr('scope', $(this).data().input);
     });
 
     $('.buscar-mapa').click(function () {
@@ -22,9 +32,11 @@ $(document).ready(function () {
 
 
     $('.cerrar-mapa').click(function (e) {
-        $($(this).data().input).val(currentMarker.position.lat() + "," + currentMarker.position.long())
+        $($(this).attr('scope')).val(currentMarker.position.lat() + "," + currentMarker.position.lng())
         $('#mapa').modal('hide');
     });
+
+
 
 });
 
@@ -50,13 +62,47 @@ function agregarRuta() {
         data: { 'nombre': ruta.nombreRuta, 'origenNombre' : ruta.origenNombre, 'destinoNombre': ruta.destinoNombre, 'origen': ruta.origen, 'destino': ruta.destino, 'frecuencia': ruta.frecuencia },
         success: function (data) {
 
-            alert('good')
+            $('#idRuta').val(data);
             
         },
         error: function (data) {
 
-            alert('error')
+            alert('no se pudo crear la ruta')
 
         }
     });
 }
+
+
+function agregarParada() {
+
+    var parada = {
+        descripcion: $('#nombre-parada').val(),
+        ubicacion: $('#ubicacion-parada').val(),
+        idRuta: $('#idRuta').val()
+    };
+    $.ajax({
+        url: "/Rutas/CreateParada",
+        type: 'POST',
+        dataType: 'json',
+        // we set cache: false because GET requests are often cached by browsers
+        // IE is particularly aggressive in that respect
+        cache: false,
+        data: { 'descripcion': parada.descripcion, 'ubicacion': parada.ubicacion, 'idRuta': parada.idRuta },
+        success: function (data) {
+
+            idRuta = data;
+
+            $('#paradas-agregadas').append("<div class='row ubicacion'><div class='col-xs-6 col-sm-6 col-md-6>" + parada.descripcion + "</div></div>");
+
+        },
+        error: function (data) {
+
+            alert('no se pudo crear la parada')
+
+        }
+    });
+}
+
+
+
