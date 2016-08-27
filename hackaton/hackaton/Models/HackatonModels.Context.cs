@@ -12,6 +12,9 @@ namespace hackaton.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class HackatonEntities : DbContext
     {
@@ -28,5 +31,47 @@ namespace hackaton.Models
         public DbSet<Parada> Paradas { get; set; }
         public DbSet<Ruta> Rutas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+    
+        public virtual ObjectResult<ConductorCercano> obtenerChoferesCercanos(Nullable<double> latOrigen, Nullable<double> lngOrigen, Nullable<double> latDestino, Nullable<double> lngDestino, Nullable<int> top)
+        {
+            var latOrigenParameter = latOrigen.HasValue ?
+                new ObjectParameter("latOrigen", latOrigen) :
+                new ObjectParameter("latOrigen", typeof(double));
+    
+            var lngOrigenParameter = lngOrigen.HasValue ?
+                new ObjectParameter("lngOrigen", lngOrigen) :
+                new ObjectParameter("lngOrigen", typeof(double));
+    
+            var latDestinoParameter = latDestino.HasValue ?
+                new ObjectParameter("latDestino", latDestino) :
+                new ObjectParameter("latDestino", typeof(double));
+    
+            var lngDestinoParameter = lngDestino.HasValue ?
+                new ObjectParameter("lngDestino", lngDestino) :
+                new ObjectParameter("lngDestino", typeof(double));
+    
+            var topParameter = top.HasValue ?
+                new ObjectParameter("top", top) :
+                new ObjectParameter("top", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConductorCercano>("obtenerChoferesCercanos", latOrigenParameter, lngOrigenParameter, latDestinoParameter, lngDestinoParameter, topParameter);
+        }
+    
+        public virtual ObjectResult<ParadaCercana> obtenerPuntosCercanos(Nullable<double> lat, Nullable<double> lng, Nullable<int> top)
+        {
+            var latParameter = lat.HasValue ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(double));
+    
+            var lngParameter = lng.HasValue ?
+                new ObjectParameter("lng", lng) :
+                new ObjectParameter("lng", typeof(double));
+    
+            var topParameter = top.HasValue ?
+                new ObjectParameter("top", top) :
+                new ObjectParameter("top", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ParadaCercana>("obtenerPuntosCercanos", latParameter, lngParameter, topParameter);
+        }
     }
 }

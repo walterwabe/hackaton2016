@@ -193,6 +193,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ConductorCercano.cs">
+      <DependentUpon>HackatonModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HackatonModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,6 +212,9 @@
       <DependentUpon>HackatonModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Parada.cs">
+      <DependentUpon>HackatonModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ParadaCercana.cs">
       <DependentUpon>HackatonModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ruta.cs">

@@ -124,5 +124,15 @@ namespace hackaton.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public void obtenerParadasCercanas(double latitud, double longitud, int top)
+        {
+            var x = db.obtenerPuntosCercanos(latitud, longitud, top);
+        }
+
+        public void obtenerChoferesCercanos(double latitudOrigen, double longitudOrigen, double latitudDestino, double longitudDestino, int top)
+        {
+            var x = db.obtenerChoferesCercanos(latitudOrigen, longitudOrigen, latitudDestino, longitudDestino, top);
+        }
     }
 }
