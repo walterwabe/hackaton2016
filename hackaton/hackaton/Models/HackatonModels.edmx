@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HackatonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HackatonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="HackatonModelStoreContainer">
           <EntitySet Name="Paradas" EntityType="HackatonModel.Store.Paradas" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Rutas" EntityType="HackatonModel.Store.Rutas" store:Type="Tables" Schema="dbo" />
@@ -64,8 +64,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <Function Name="obtenerChoferesCercanos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="latOrigen" Type="float" Mode="In" />
+          <Parameter Name="lngOrigen" Type="float" Mode="In" />
+          <Parameter Name="latDestino" Type="float" Mode="In" />
+          <Parameter Name="lngDestino" Type="float" Mode="In" />
+          <Parameter Name="top" Type="int" Mode="In" />
+        </Function>
+        <Function Name="obtenerPuntosCercanos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lat" Type="float" Mode="In" />
+          <Parameter Name="lng" Type="float" Mode="In" />
+          <Parameter Name="top" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HackatonModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -77,6 +88,18 @@
             <End Role="Rutas" EntitySet="Rutas" />
             <End Role="Paradas" EntitySet="Paradas" />
           </AssociationSet>
+          <FunctionImport Name="obtenerChoferesCercanos" ReturnType="Collection(HackatonModel.ConductorCercano)">
+            <Parameter Name="latOrigen" Mode="In" Type="Double" />
+            <Parameter Name="lngOrigen" Mode="In" Type="Double" />
+            <Parameter Name="latDestino" Mode="In" Type="Double" />
+            <Parameter Name="lngDestino" Mode="In" Type="Double" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="obtenerPuntosCercanos" ReturnType="Collection(HackatonModel.ParadaCercana)">
+            <Parameter Name="lat" Mode="In" Type="Double" />
+            <Parameter Name="lng" Mode="In" Type="Double" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Parada">
           <Key>
@@ -130,6 +153,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ParadaCercana" >
+          <Property Type="String" Name="Ubicacion" Nullable="false" />
+          <Property Type="Double" Name="Distancia" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ConductorCercano" >
+          <Property Type="String" Name="Nombre" Nullable="false" />
+          <Property Type="String" Name="Apellidos" Nullable="false" />
+          <Property Type="String" Name="Telefono" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="Time" Name="HoraSalida" Nullable="false" />
+          <Property Type="Time" Name="HoraRegreso" Nullable="false" />
+          <Property Type="String" Name="Origen" Nullable="false" />
+          <Property Type="Double" Name="DistanciaOrigen" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="false" />
+          <Property Type="Double" Name="DistanciaDestino" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -177,6 +217,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="obtenerChoferesCercanos" FunctionName="HackatonModel.Store.obtenerChoferesCercanos" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HackatonModel.ConductorCercano">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraRegreso" ColumnName="HoraRegreso" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="DistanciaOrigen" ColumnName="DistanciaOrigen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="DistanciaDestino" ColumnName="DistanciaDestino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="obtenerPuntosCercanos" FunctionName="HackatonModel.Store.obtenerPuntosCercanos" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HackatonModel.ParadaCercana">
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Distancia" ColumnName="Distancia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
