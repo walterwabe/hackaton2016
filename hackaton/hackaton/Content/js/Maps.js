@@ -6,7 +6,7 @@ var edit = true;
 
 var colors = ["red", "yellow", "green", "blue", "orange"];
 
-function initMap(idMapa) {
+function initMap() {
      currentMarker = null;
      geocoder = new google.maps.Geocoder;
      infowindow = new google.maps.InfoWindow;
@@ -93,3 +93,5 @@ function mostrarParadas(nombreRuta, arrayParadas, numColor) {
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/' + colors[numColor] + '-dot.png');
     }
 }
+
+

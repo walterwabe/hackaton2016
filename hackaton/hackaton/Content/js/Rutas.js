@@ -3,10 +3,31 @@
 $(document).ready(function () {
     $('#agregar-ruta').click(function () {
         agregarRuta();
-
-
     });
+
 });
+
+
+
+
+$(document).ready(function () {
+
+    $('.abrir-mapa').click(function () {
+        initMap('map');
+    });
+
+    $('.buscar-mapa').click(function () {
+        obtenerCoordenadasDesdeDireccion($('#ubicacion-mapa').val());
+    });
+
+
+    $('.cerrar-mapa').click(function (e) {
+        $($(this).data().input).val(currentMarker.position.lat() + "," + currentMarker.position.long())
+        $('#mapa').modal('hide');
+    });
+
+});
+
 
 function agregarRuta() {
 
