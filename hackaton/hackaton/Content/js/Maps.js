@@ -94,6 +94,9 @@ function mostrarParadas(map, nombreRuta, arrayParadas, numColor) {
             animation: google.maps.Animation.DROP
         });
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/' + colors[numColor] + '-dot.png');
+        var infowindow = new google.maps.InfoWindow;
+        infowindow.setContent(arrayParadas[x].nombre);
+        infowindow.open(map, marker);
     }
 }
 
