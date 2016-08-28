@@ -1,4 +1,4 @@
-﻿#crear-usuario{
+﻿#crear-usuario, #detalleRuta{
 	padding: 30px 30px;
 }
 
@@ -21,8 +21,12 @@
 		padding: 100px 30px;
 	}
 
-	#crear-usuario{
+	#crear-usuario, #detalleRuta{
 		padding: 100px 30px;
+	}
+
+		#detalleRuta{
+		padding: 150px 30px;
 	}
 
 	#detalles-usuario {

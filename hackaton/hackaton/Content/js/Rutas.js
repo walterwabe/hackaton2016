@@ -11,8 +11,9 @@ $(document).ready(function () {
     });
 
     window.setTimeout(function () {
+        initMapaParadas();
         obtenerParadasLista()
-    }, 2000);
+    }, 1000);
     
 
 });
@@ -41,7 +42,7 @@ $(document).ready(function () {
         $('#mapa').modal('hide');
     });
 
-    initMapaParadas();
+    
 
 });
 
