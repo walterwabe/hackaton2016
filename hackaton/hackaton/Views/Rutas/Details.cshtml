@@ -70,17 +70,15 @@
 			    			    </div>
 
 
-                                <div class="row">
-                                    <input type="hidden" id="mapa-values" />
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
-			    					    <div class="form-group">
-			    						    <a href="#" scope="" class="cerrar-mapa btn btn-info" > Aceptar</a>
-			    					    </div>
-			    			    </div>
-			    			
-			    			    
 			    		
 			    		    </form>
+
+                                 <ul id="paradasRuta">
+                                     @foreach (var item in Model.Paradas)
+                                        {
+                                            <li lat="@item.Ubicacion.Latitude" lng ="@item.Ubicacion.Longitude" nombre="@item.Descripcion"/>
+                                        }
+                                 </ul>
 			    	    </div>
 	    		    </div>
     		    </div>
@@ -93,6 +91,6 @@
 
 
     <script>
-        initMapParadas();
+     
     </script>
 </p>
