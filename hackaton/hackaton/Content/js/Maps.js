@@ -90,7 +90,7 @@ function mostrarParadas(map, nombreRuta, arrayParadas, numColor) {
             position: { lat: arrayParadas[x].lat, lng: arrayParadas[x].lng },
             title: nombreRuta,
             label: arrayParadas[x].nombre,
-            draggable: true,
+            draggable: false,
             animation: google.maps.Animation.DROP
         });
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/' + colors[numColor] + '-dot.png');
@@ -100,7 +100,7 @@ function mostrarParadas(map, nombreRuta, arrayParadas, numColor) {
 function initMapaParadas() {
     var baseLatLng = { lat: 9.934739, lng: -84.087502 };
     mapParadas = new google.maps.Map(document.getElementById('mapParadas'), {
-        zoom: 9,
+        zoom: 11,
         center: baseLatLng
     });
 }
