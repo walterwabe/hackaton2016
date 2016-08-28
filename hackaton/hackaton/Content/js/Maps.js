@@ -2,6 +2,7 @@
 var geocoder;
 var infowindow;
 var map;
+var mapParadas;
 var edit = true;
 
 var colors = ["red", "yellow", "green", "blue", "orange"];
@@ -82,7 +83,7 @@ function test(color) {
     mostrarParadas('test', paradas, color);
 }
 
-function mostrarParadas(nombreRuta, arrayParadas, numColor) {
+function mostrarParadas(map, nombreRuta, arrayParadas, numColor) {
     for (var x = 0; x < arrayParadas.length; x++) {
         var marker = new google.maps.Marker({
             map: map,
@@ -94,6 +95,23 @@ function mostrarParadas(nombreRuta, arrayParadas, numColor) {
         });
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/' + colors[numColor] + '-dot.png');
     }
+}
+
+function initMapaParadas() {
+    var baseLatLng = { lat: 9.934739, lng: -84.087502 };
+    mapParadas = new google.maps.Map(document.getElementById('mapParadas'), {
+        zoom: 9,
+        center: baseLatLng
+    });
+}
+
+function obtenerParadasLista(idLista) {
+    var paradas = $('#paradasRuta li');
+    var arrayParadas = [];
+    for (var x = 0; x < paradas.length; x++) {
+        arrayParadas.push({ lat: paradas.attr('lat'), lng: paradas.attr('lng'), nombre: paradas.attr('nombre') });
+    }
+    mostrarParadas(mapParadas,'', arrayParadas, 0);
 }
 
 
