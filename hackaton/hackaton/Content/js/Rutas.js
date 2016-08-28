@@ -69,6 +69,7 @@ function agregarRuta() {
         success: function (data) {
 
             $('#idRuta').val(data);
+            alert("Ruta Creada Satisfactoriamente");
             
         },
         error: function (data) {
@@ -100,7 +101,7 @@ function agregarParada() {
             idRuta = data;
 
             $('#paradas-agregadas').append("<div class='row ubicacion'><div class='col-xs-6 col-sm-6 col-md-6>" + parada.descripcion + "</div></div>");
-
+            alert("Parada Creada Satisfactoriamente");
         },
         error: function (data) {
 
