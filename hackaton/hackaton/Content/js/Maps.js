@@ -109,7 +109,7 @@ function obtenerParadasLista(idLista) {
     var paradas = $('#paradasRuta li');
     var arrayParadas = [];
     for (var x = 0; x < paradas.length; x++) {
-        arrayParadas.push({ lat: paradas.attr('lat'), lng: paradas.attr('lng'), nombre: paradas.attr('nombre') });
+        arrayParadas.push({ lat: parseFloat(paradas.attr('lat')), lng: parseFloat(paradas.attr('lng')), nombre: paradas.attr('nombre') });
     }
     mostrarParadas(mapParadas,'', arrayParadas, 0);
 }
