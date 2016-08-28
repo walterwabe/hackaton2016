@@ -7,37 +7,7 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Ruta</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nombre)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Origen_Nombre)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Origen_Nombre)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Destino_Nombre)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Destino_Nombre)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FrecuenciaMin)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FrecuenciaMin)
-    </div>
-
-
+    
 
     <div class="container"  role="dialog">
             <div class="row centered-form">
@@ -83,7 +53,7 @@
 			    		
 			    		    </form>
 
-                                 <ul id="paradasRuta">
+                                 <ul id="paradasRuta" style="display:none;">
                                      @foreach (var item in Model.Paradas)
                                         {
                                             <li lat="@item.Ubicacion.Latitude" lng ="@item.Ubicacion.Longitude" nombre="@item.Descripcion"/>

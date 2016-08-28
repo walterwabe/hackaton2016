@@ -10,6 +10,11 @@ $(document).ready(function () {
         agregarParada();
     });
 
+    window.setTimeout(function () {
+        obtenerParadasLista()
+    }, 2000);
+    
+
 });
 
 
